@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='rendered'>
+    <pages>
+        <page name='Understanding Constants and Variables'/>
+        <page name='Simple Arithmetic'/>
+        <page name='Basic String Manipulation'/>
+        <page name='Control Flow - If, While and Switch'/>
+        <page name='Control Flow - Guard'/>
+        <page name='Optionals'/>
+        <page name='Arrays and Dictionaries'/>
+        <page name='Functions'/>
+        <page name='Classes and Methods'/>
+        <page name='Generics'/>
+        <page name='Protocols'/>
+    </pages>
+</playground>
