@@ -1,5 +1,5 @@
 //: [Previous](@previous)
-    
+
 /*:
 ## Guard
 
@@ -33,7 +33,27 @@ Before I further explain the guard statement, let's go straight to the following
 */
 
 
+struct Article {
+    var title:String?
+    var description:String?
+    var author:String?
+    var totalWords:Int?
+}
 
+func printInfo(article: Article) {
+    if let totalWords = article.totalWords where totalWords > 1000 {
+        if let title = article.title {
+            print("Title: \(title)")
+        } else {
+            print("Error: Couldn't print the title of the article!")
+        }
+    } else {
+        print("Error: Couldn't print the total word count!")
+    }
+}
+
+let sampleArticle = Article(title: "Swift Guide", description: "A beginner's guide to Swift 2", author: "Simon Ng", totalWords: 1500)
+printInfo(sampleArticle)
 
 
 /*:
@@ -82,13 +102,21 @@ If you rewrite the sample code using `guard`, it is a lot cleaner:
     }
 
 */
+func printInfoGuard(article: Article) {
+    guard let totalWords = article.totalWords where totalWords > 1000 else {
+        print("Error: Couldn't print the total word count!")
+        return
+    }
+    
+    guard let title = article.title else {
+        print("Error: Couldn't print the title of the article!")
+        return
+    }
+    
+    print("Title: \(title)")
+}
 
-
-
-
-
-
-
+printInfoGuard(sampleArticle)
 
 /*:
 Great! You've completed this section. With guard, you focus on handling the condition you don't want. Furthermore, it forces you to handle one case at a time, avoiding nested conditions. Thus, the code is cleaner and easier to read.
