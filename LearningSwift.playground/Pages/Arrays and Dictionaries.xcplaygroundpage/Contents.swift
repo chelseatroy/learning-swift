@@ -22,9 +22,8 @@ Try to execute the code snippet below and see what you get.
 
 
 */
-
-
-
+var peripherals = ["Printer", "USB Drive", "Touchpad", "Mouse", "Speaker"]
+peripherals[0]
 
 /*:
 Please note that arrays in Swift are always clear about the types of values that they can store. For the `peripherals` array, you can only use it to store String values. You can't store both String and Int elements in the same array.
@@ -71,7 +70,9 @@ You can iterate over the whole array by using `for-in` loop. Here is an example:
     }
 
 */
-
+for item in peripherals {
+    print(item)
+}
 
 /*:
 ## Dictionaries
@@ -93,7 +94,7 @@ As an example, here is how you can create the dictionary for the stocks.
 */
 
 
-
+var stocks = ["AAPL": "Apple", "TSLA": "Tesla Motors", "GOOG": "Google", "AMZN": "Amazon.com", "BABA": "Alibaba Group"]
 
 /*:
 To retrieve the associated value of a particular key, you can use the subscript syntax, which is very similar to that in arrays:
@@ -112,7 +113,9 @@ Try to execute the code below and see what you will get:
     stocks
 */
 
-
+stocks["GOOG"]
+stocks["FB"] = "Facebook"
+stocks
 
 
 
@@ -125,9 +128,9 @@ You can iterate over the items in a dictionary with a `for-in` loop. Here is an 
     }
 
 */
-
-
-
+for (stockCode, company) in stocks {
+    print("\(stockCode): \(company)")
+}
 
 
 
@@ -145,7 +148,9 @@ If you just want to iterate over the keys/values of a dictionary, you can just c
 
 */
 
-
+for stockCode in stocks.keys {
+    print(stockCode)
+}
 /*:
 Great! You've completed this section. If you're ready, click [Next](@next) to learn more...
 */
