@@ -74,8 +74,6 @@ You can now call the method without external parameter names:
 
 
 
-
-
 /*:
 A function can return a value. Previously, we create a function without a return value. Let's modify the compare function a bit to return a value:
 
