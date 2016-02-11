@@ -11,9 +11,8 @@ Let's write a couple lines of code and give a try:
     message = nil
 */
 
-
-
-
+var message: String? = "Swift is awesome!"
+message = nil
 
 /*:
 
@@ -56,8 +55,8 @@ Let's go through the below example and you will have a better understanding of t
     let finalMessage = message1 + message2
 
 */
-
-
+let message1 = "Why optionals?"
+var message2:String? = "Because Swift wants you to write some better code."
 
 
 /*:
@@ -81,6 +80,9 @@ So how can we make the code work? Apparently, we need to test if `message2` cont
 Swift provides developers a number of ways to work with optionals. The most straightforward one is to perform a nil-check using `if` statement. Once you confirm the optional contains a value, you unwrap it by placing an exclamation mark (!) to the end of the optional's name. In Swift this is known as forced unwrapping. You use the `!` operator to unwrap an optional and reveal the underlying value.
 */
 
+if message2 != nil {
+    let finalMessage = message1 + message2!
+}
 /*:
 
 But what if we forget the nil-check and force unwrap `message2` like below?
@@ -109,8 +111,9 @@ There is no better way to explain optional binding than using an example. We con
     }
 
 */
-
-
+if let tempMessage = message2 {
+    let finalMessage = message1 + tempMessage
+}
 
 
 /*:
@@ -136,11 +139,13 @@ According to Apple, optional chaining is a process for querying and calling prop
 
 In the above code, we initialize `html` to a string encoding using percent encoding (aka URL encoding). This encoding is commonly used in encoding URLs. We simply call up `stringByRemovingPercentEncoding` method to decode the html string. If you try to run it in Playgrounds, it works perfectly.
 */
+var html:String? = "Because%20Swift%20wants%20you%20to%20write%20some%20better%20code."
 
-
-
-
-
+if let tempHtml = html {
+    if let newHtml = tempHtml.stringByRemovingPercentEncoding {
+        print(newHtml)
+    }
+}
 
 
 /*:
@@ -156,8 +161,9 @@ The feature allows us to chain multiple optionals together with the `?.` operato
 */
 
 
-
-
+if let newHtml = html?.stringByRemovingPercentEncoding {
+    print(newHtml)
+}
 
 
 /*:
