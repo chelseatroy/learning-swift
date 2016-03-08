@@ -2,7 +2,7 @@
 
 import UIKit
 
-var str = "Hello, playground"
+//The Basics
 
 let fooBar = ("foo", "bar", 8)
 fooBar.0
@@ -29,6 +29,19 @@ var hello: String? = "ohai"
 if let greeting = hello {
     print(greeting)
 }
+
+//Basic Operators
+
+var hi: String?
+//hi = "yo"
+let greeting = hi ?? "hello"
+
+let names = ["Anna", "Alex", "Bryan"]
+for i in 0..<names.count {
+    print(names[i])
+}
+
+//Strings and Characters
 
 
 
