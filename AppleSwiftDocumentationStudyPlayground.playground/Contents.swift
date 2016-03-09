@@ -42,7 +42,29 @@ for i in 0..<names.count {
 }
 
 //Strings and Characters
+"".isEmpty
+"notempty".isEmpty
 
+for char in "HELLO".characters {
+    print(char)
+}
 
+let exclamationMark: Character = "!"
+var allo = "Hello"
+allo.append(exclamationMark)
+
+let germanGreeting = "Guten Tag!"
+germanGreeting[germanGreeting.startIndex]
+germanGreeting[germanGreeting.endIndex.predecessor()]
+germanGreeting[germanGreeting.startIndex.successor()]
+let index = germanGreeting.startIndex.advancedBy(7)
+germanGreeting[index]
+
+//greeting[greeting.endIndex] // error
+//greeting.endIndex.successor() // error
+
+for index in greeting.characters.indices {
+    print("\(greeting[index]) ", terminator: "")
+}
 
 
