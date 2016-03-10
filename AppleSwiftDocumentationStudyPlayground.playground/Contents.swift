@@ -67,4 +67,12 @@ for index in greeting.characters.indices {
     print("\(greeting[index]) ", terminator: "")
 }
 
+//Collection Types
+var stringArray = ["hey", "hi"]
+stringArray.append("Hello")
+
+for (index, value) in stringArray.enumerate() {
+    print("Item \(index + 1): \(value)")
+}
+
 
