@@ -120,6 +120,28 @@ airports.keys
 airports.values
 let airportCodes = [String](airports.keys)
 
+//Control Flow
+
+let legs = ["spider": 8, "cat": 4, "orangutan": 2]
+for (animal, numLegs) in legs {
+    print("a \(animal) has \(numLegs) legs")
+}
+
+for var index = 0; index < 3; ++index {
+    print("index is \(index)")
+}
+
+var i = 0
+while i < 4 {
+    ++i
+}
+
+repeat {
+  ++i
+} while i > 8
+//runs once regardless
+
+
 
 
 
