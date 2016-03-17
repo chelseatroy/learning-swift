@@ -141,7 +141,16 @@ repeat {
 } while i > 8
 //runs once regardless
 
-
+var fruit = "pear"
+switch fruit {
+    case "banana":
+        print("peel me")
+    case "pear",
+    "apple":
+        print("eat me whole")
+    default:
+        print("I have lots of vitamins")
+}
 
 
 
