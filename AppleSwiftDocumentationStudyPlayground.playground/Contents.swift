@@ -223,4 +223,54 @@ if #available(iOS 9, OSX 10.10, *) {
     // Fall back to earlier iOS and OS X APIs
 }
 
+//Functions
+
+//tuple return type
+func minMax(array: [Int]) -> (min: Int, max: Int) {
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+
+let bounds = minMax([8, -6, 2, 109, 3, 71])
+print("min is \(bounds.min) and max is \(bounds.max)")
+
+//Optional tuple
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+
+//local and external parameter names
+//call the function with the external name,
+//use the local name for implementation
+func sayHello(to person: String, and anotherPerson: String) -> String {
+    return "Hello \(person) and \(anotherPerson)!"
+}
+print(sayHello(to: "Bill", and: "Ted"))
+
+//Default paramenters
+func someFunction(parameterWithDefault: Int = 12) {
+    // function body goes here
+    // if no arguments are passed to the function call,
+    // value of parameterWithDefault is 12
+}
+someFunction(6) // parameterWithDefault is 6
+someFunction() // parameterWithDefault is 12
 
