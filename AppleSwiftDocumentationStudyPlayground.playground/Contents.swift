@@ -324,3 +324,9 @@ while currentValue != 0 {
     currentValue = moveNearerToZero(currentValue)
 }
 
+//Closures
+// This got complicated. Come back to this.
+
+//Enumerations
+
+
