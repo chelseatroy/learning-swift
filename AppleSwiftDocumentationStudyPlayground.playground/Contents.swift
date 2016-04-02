@@ -328,5 +328,75 @@ while currentValue != 0 {
 // This got complicated. Come back to this.
 
 //Enumerations
+enum CompassPoint: String {
+    case North
+    case South
+    case East
+    case West
+}
+
+enum Planet: Int {
+    case Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto
+}
+
+let ourPlanet: Planet
+ourPlanet = .Earth
+
+let directionToHead = CompassPoint.South
+switch directionToHead {
+case .North:
+    print("Lots of planets have a north")
+case .South:
+    print("Watch out for penguins")
+case .East:
+    print("Where the sun rises")
+case .West:
+    print("Where the skies are blue")
+}
+
+//Enumerations:Discriminated Unions/Tagged Unions/Variants
+enum Barcode {
+    case UPCA(Int, Int, Int, Int)
+    case QRCode(String)
+}
+
+var productBarcode = Barcode.UPCA(8, 85909, 51226, 3)
+
+switch productBarcode {
+case .UPCA(let numberSystem, let manufacturer, let product, let check):
+    print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")
+case .QRCode(let productCode):
+    print("QR code: \(productCode).")
+}
+
+//Enumerations:Default Values
+enum ASCIIControlCharacter: Character {
+    case Tab = "\t"
+    case LineFeed = "\n"
+    case CarriageReturn = "\r"
+}
+
+let earthsOrder = Planet.Earth.rawValue
+// earthsOrder is 3
+
+let sunsetDirection = CompassPoint.West.rawValue
+// sunsetDirection is "West"
+
+let possiblePlanet = Planet(rawValue: 7)
 
 
+//Enumerations:Recursive Enumerations
+
+indirect enum ArithmeticExpression {
+    case Number(Int)
+    case Addition(ArithmeticExpression, ArithmeticExpression)
+    case Multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+
+(5 + 4) * 2
+let five = ArithmeticExpression.Number(5)
+let four = ArithmeticExpression.Number(4)
+let sum = ArithmeticExpression.Addition(five, four)
+let product = ArithmeticExpression.Multiplication(sum, ArithmeticExpression.Number(2))
+
+//
