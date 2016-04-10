@@ -399,4 +399,7 @@ let four = ArithmeticExpression.Number(4)
 let sum = ArithmeticExpression.Addition(five, four)
 let product = ArithmeticExpression.Multiplication(sum, ArithmeticExpression.Number(2))
 
-//
+//Classes and Structs
+// - Classes are reference types; structures are value types
+
+//Computed Properties
