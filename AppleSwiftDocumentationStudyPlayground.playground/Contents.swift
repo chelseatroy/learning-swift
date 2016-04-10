@@ -403,3 +403,55 @@ let product = ArithmeticExpression.Multiplication(sum, ArithmeticExpression.Numb
 // - Classes are reference types; structures are value types
 
 //Computed Properties
+struct AlternativeRect {
+    var origin = Point()
+    var size = Size()
+    var center: Point {
+        get {
+            let centerX = origin.x + (size.width / 2)
+            let centerY = origin.y + (size.height / 2)
+            return Point(x: centerX, y: centerY)
+        }
+        set {
+            origin.x = newValue.x - (size.width / 2)
+            origin.y = newValue.y - (size.height / 2)
+        }
+    }
+}
+
+//property observers
+class StepCounter {
+    var totalSteps: Int = 0 {
+        willSet(newTotalSteps) {
+            print("About to set totalSteps to \(newTotalSteps)")
+        }
+        didSet {
+            if totalSteps > oldValue  {
+                print("Added \(totalSteps - oldValue) steps")
+            }
+        }
+    }
+}
+let stepCounter = StepCounter()
+stepCounter.totalSteps = 200
+// About to set totalSteps to 200
+// Added 200 steps
+
+//Type properties (static vars instantiated once for all instances of a class): example
+struct AudioChannel {
+    static let thresholdLevel = 10
+    static var maxInputLevelForAllChannels = 0
+    var currentLevel: Int = 0 {
+        didSet {
+            if currentLevel > AudioChannel.thresholdLevel {
+                // cap the new audio level to the threshold level
+                currentLevel = AudioChannel.thresholdLevel
+            }
+            if currentLevel > AudioChannel.maxInputLevelForAllChannels {
+                // store this as the new overall maximum input level
+                AudioChannel.maxInputLevelForAllChannels = currentLevel
+            }
+        }
+    }
+}
+
