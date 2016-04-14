@@ -455,3 +455,12 @@ struct AudioChannel {
     }
 }
 
+//Methods
+//See functions
+
+//Subscripts
+//For calling methods on a type by declaring paramenters in brackets
+
+//Inheritance
+
+
