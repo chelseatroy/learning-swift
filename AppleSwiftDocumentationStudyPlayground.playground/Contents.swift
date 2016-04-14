@@ -463,4 +463,16 @@ struct AudioChannel {
 
 //Inheritance
 
+class Bicycle {
+    var hasBasket = false
+}
+
+let bicycle = Bicycle()
+bicycle.hasBasket = true
+//^ Why does this work if any object instantiated as a constant cannot have its properties changed?
+
+//final
+
+//Initialization
+
 
