@@ -474,5 +474,30 @@ bicycle.hasBasket = true
 //final
 
 //Initialization
+//Memberwise Initializers
+struct Size {
+    var width = 0.0, height = 0.0
+}
+let twoByTwo = Size(width: 2.0, height: 2.0)
+
+//Using a closure to define a default property value
+struct SomeType{}
+class SomeClass {
+    let someProperty: SomeType = {
+        // create a default value for someProperty inside this closure
+        // someValue must be of the same type as SomeType
+        let someValue = SomeType()
+        return someValue
+    }()
+}
+
+//Deinitialization
+class FileManager {
+    deinit {
+        // perform the deinitialization
+        //this might be used right before an instance is deallocated to, for example, close a file that it opened.
+    }
+}
+
 
 
