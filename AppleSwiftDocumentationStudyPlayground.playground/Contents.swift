@@ -499,5 +499,129 @@ class FileManager {
     }
 }
 
+//Automatic Reference Counting
+//Weak, unowned
+//See notes from Zac
+
+//Optional Chaining
+//Can be done on optional properties or on methods that return optional types
+
+//Errors and Throwing Errors
+enum VendingMachineError: ErrorType {
+    case InvalidSelection
+    case InsufficientFunds(coinsNeeded: Int)
+    case OutOfStock
+}
+
+struct Item {
+    var price: Int
+    var count: Int
+}
+
+class VendingMachine {
+    var inventory = [
+        "Candy Bar": Item(price: 12, count: 7),
+        "Chips": Item(price: 10, count: 4),
+        "Pretzels": Item(price: 7, count: 11)
+    ]
+    var coinsDeposited = 0
+    func dispenseSnack(snack: String) {
+        print("Dispensing \(snack)")
+    }
+    
+    func vend(itemNamed name: String) throws {
+        guard let item = inventory[name] else {
+            throw VendingMachineError.InvalidSelection
+        }
+        
+        guard item.count > 0 else {
+            throw VendingMachineError.OutOfStock
+        }
+        
+        guard item.price <= coinsDeposited else {
+            throw VendingMachineError.InsufficientFunds(coinsNeeded: item.price - coinsDeposited)
+        }
+        
+        coinsDeposited -= item.price
+        
+        var newItem = item
+        newItem.count -= 1
+        inventory[name] = newItem
+        
+        dispenseSnack(name)
+    }
+}
+
+let favoriteSnacks = [
+    "Alice": "Chips",
+    "Bob": "Licorice",
+    "Eve": "Pretzels",
+]
+
+//use try?, try!, or do...catch to handle errors, or propagate them up by having a function throw
+func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws {
+    let snackName = favoriteSnacks[person] ?? "Candy Bar"
+    try vendingMachine.vend(itemNamed: snackName)
+}//even if it throws, "try" without punctuation used to call it
+
+//do...catch can catch different types of errors independently
+var vendingMachine = VendingMachine()
+vendingMachine.coinsDeposited = 8
+do {
+    try buyFavoriteSnack("Alice", vendingMachine: vendingMachine)
+} catch VendingMachineError.InvalidSelection {
+    print("Invalid Selection.")
+} catch VendingMachineError.OutOfStock {
+    print("Out of Stock.")
+} catch VendingMachineError.InsufficientFunds(let coinsNeeded) {
+    print("Insufficient funds. Please insert an additional \(coinsNeeded) coins.")
+}
+// Prints "Insufficient funds. Please insert an additional 2 coins."
+
+//You use try? to handle an error by converting it to an optional value. If an error is thrown while evaluating the try? expression, the value of the expression is nil
+
+//Using try? lets you write concise error handling code when you want to handle all errors in the same way. For example, the following code uses several approaches to fetch data, or returns nil if all of the approaches fail.
+func fetchDataFromDisk() -> String? {}
+func fetchDataFromServer() -> String? {}
+
+func fetchData() -> String? {
+    if let data = try? fetchDataFromDisk() { return data }
+    if let data = try? fetchDataFromServer() { return data }
+    return nil
+}
+
+//Sometimes you know a throwing function or method won’t, in fact, throw an error at runtime. On those occasions, you can write try! before the expression to disable error propagation and wrap the call in a runtime assertion that no error will be thrown. If an error actually is thrown, you’ll get a runtime error.
+
+//For example, the following code uses a loadImage(_:) function, which loads the image resource at a given path or throws an error if the image can’t be loaded. In this case, because the image is shipped with the application, no error will be thrown at runtime, so it is appropriate to disable error propagation.
+
+func loadImage(path: String) throws -> String {}
+
+let photo = try! loadImage("./Resources/John Appleseed.jpg")
+
+//A defer statement defers execution until the current scope is exited. This statement consists of the defer keyword and the statements to be executed later. The deferred statements may not contain any code that would transfer control out of the statements, such as a break or a return statement, or by throwing an error. Deferred actions are executed in reverse order of how they are specified—that is, the code in the first defer statement executes after code in the second, and so on.
+
+func exists(path: String) -> Bool{}
+func open(name: String) -> File {}
+func close(name: File) {}
+
+struct File {
+    func readline() throws -> String? {}
+}
+
+func processFile(filename: String) throws {
+    if exists(filename) {
+        let file = open(filename)
+        defer {
+            close(file)
+        }
+        while let line = try file.readline() {
+            // Work with the file.
+        }
+        // close(file) is called here, at the end of the scope.
+    }
+}
+
+
+
 
 
