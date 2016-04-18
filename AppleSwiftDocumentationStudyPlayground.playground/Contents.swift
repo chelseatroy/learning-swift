@@ -621,6 +621,18 @@ func processFile(filename: String) throws {
     }
 }
 
+//Type casting
+for (_, snack) in favoriteSnacks {
+    if snack is String {
+        print(snack)
+    }
+}
+
+//use as? to return nil if downcasting fails, and as! to foce unwrap
+//AnyObject, Any
+
+//Nested Types
+
 
 
 
