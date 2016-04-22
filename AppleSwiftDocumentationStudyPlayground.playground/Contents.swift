@@ -678,5 +678,63 @@ let heartsSymbol = BlackjackCard.Suit.Hearts.rawValue
 
 
 //Extensions
+extension Double {
+    var km: Double { return self * 1_000.0 }
+    var m: Double { return self }
+    var cm: Double { return self / 100.0 }
+    var mm: Double { return self / 1_000.0 }
+    var ft: Double { return self / 3.28084 }
+}
+let oneInch = 25.4.mm
+print("One inch is \(oneInch) meters")
+// Prints "One inch is 0.0254 meters"
+let threeFeet = 3.ft
+print("Three feet is \(threeFeet) meters")
+// Prints "Three feet is 0.914399970739201 meters"
+
+//A lot of interesting stuff here on what extensions can and cannot do. Little about why. Return to this section.
+
+extension Int {
+    mutating func square() {
+        self = self * self
+    }
+}
+var someInt = 3
+someInt.square()
+// someInt is now 9
+
+extension Int {
+    enum Kind {
+        case Negative, Zero, Positive
+    }
+    var kind: Kind {
+        switch self {
+        case 0:
+            return .Zero
+        case let x where x > 0:
+            return .Positive
+        default:
+            return .Negative
+        }
+    }
+}
+
+func printIntegerKinds(numbers: [Int]) {
+    for number in numbers {
+        switch number.kind {
+        case .Negative:
+            print("- ", terminator: "")
+        case .Zero:
+            print("0 ", terminator: "")
+        case .Positive:
+            print("+ ", terminator: "")
+        }
+    }
+    print("")
+}
+printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
+// Prints "+ + - 0 - 0 +"
+
+
 
 
