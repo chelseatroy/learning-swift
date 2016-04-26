@@ -735,6 +735,29 @@ func printIntegerKinds(numbers: [Int]) {
 printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
 // Prints "+ + - 0 - 0 +"
 
+//Protocols
+//Evidently, protocol methods/variables can be optional:
+//(Why would I want to do this?)
+@objc protocol CounterDataSource {
+    optional func incrementForCount(count: Int) -> Int
+    optional var fixedIncrement: Int { get }
+}
 
+//create an extension to add default behavior to a protocol:
+extension CounterDataSource {
+    func randomBool() -> Bool {
+        return Double(random()) > 0.5
+    }
+}
+
+//Protocol constraints:
+//For instance, you can define an extension to the CounterDataSource protocol that applies to any collection whose elements conform to the TextRepresentable protocol from the example above.
+
+extension CounterDataSource where Generator.Element: TextRepresentable {
+    var textualDescription: String {
+        let itemsAsText = self.map { $0.textualDescription }
+        return "[" + itemsAsText.joinWithSeparator(", ") + "]"
+    }
+}
 
 
