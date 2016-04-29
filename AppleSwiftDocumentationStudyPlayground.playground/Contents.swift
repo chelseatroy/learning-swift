@@ -760,4 +760,36 @@ extension CounterDataSource where Generator.Element: TextRepresentable {
     }
 }
 
+//Generics
+protocol Hello {
+    func swapTwoValues<T>(inout a: T, inout _ b: T)
+}
+
+//Extending an existing type to specify an associated type
+extension Array: Container {}
+
+//Where clauses
+func allItemsMatch<
+    C1: Container, C2: Container
+    where C1.ItemType == C2.ItemType, C1.ItemType: Equatable>
+    (someContainer: C1, _ anotherContainer: C2) -> Bool {
+    
+    // check that both containers contain the same number of items
+    if someContainer.count != anotherContainer.count {
+        return false
+    }
+    
+    // check each pair of items to see if they are equivalent
+    for i in 0..<someContainer.count {
+        if someContainer[i] != anotherContainer[i] {
+            return false
+        }
+    }
+    
+    // all items match, so return true
+    return true
+    
+}
+
+
 
