@@ -791,5 +791,10 @@ func allItemsMatch<
     
 }
 
+//Access Control
+
+//In Swift, private is in-file, not in-class
+//members are assigned the lowest access control of their surroundings by default
+
 
 
