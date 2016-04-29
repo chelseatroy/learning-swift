@@ -796,5 +796,8 @@ func allItemsMatch<
 //In Swift, private is in-file, not in-class
 //members are assigned the lowest access control of their surroundings by default
 
+//Advanced Operators
+//Bitwise, equivalence, shifting - come back to this if you need it
+
 
 
