@@ -70,7 +70,7 @@ class SquareInSquareView: UIView {
         addSubview(innerView)
     }
         
-    // So we're going to add a seperate method for styling via the protocol here!
+    // So we're going to add a separate method for styling via the protocol here!
     func configureWithStylingDelegate(stylingDelegate: SquareInSquareViewStylingDelegate) {
         backgroundColor = stylingDelegate.outerBackgroundColor
         layer.borderWidth = stylingDelegate.outerBorderWidth
@@ -98,14 +98,13 @@ struct PurpleInBlueSquareStyle: SquareInSquareViewStylingDelegate {
     }
 }
 
-let purpleInBlueSaquareView = SquareInSquareView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-purpleInBlueSaquareView.configureWithStylingDelegate(PurpleInBlueSquareStyle())
+let purpleInBlueSquareView = SquareInSquareView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+purpleInBlueSquareView.configureWithStylingDelegate(PurpleInBlueSquareStyle())
 
 /*:
 Notice that we did not have to subclass our view to create this style.
 ### Task: Create more views with varying styles without subclassing.
 */
-
 // your fun views here!
 
 
